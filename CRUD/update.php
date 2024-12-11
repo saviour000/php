@@ -79,7 +79,7 @@ if (isset($_POST['update'])) {
         echo "Data inserted Successfully";
         ?>
 
-        <meta http-equiv="refresh" content="1 ;url=http://localhost/EXAM/FORM/display.php">
+        <meta http-equiv="refresh" content="1 ;url=http://localhost/EXAM/FORM/read.php">
 
 
         <?php
