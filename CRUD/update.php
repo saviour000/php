@@ -8,12 +8,12 @@ $data = mysqli_query($conn, $query);
 
 $total = mysqli_num_rows($data);
 $result = mysqli_fetch_assoc($data)
-
     ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,9 +62,10 @@ $result = mysqli_fetch_assoc($data)
 
 include 'db_conn.php';
 
-if ($_POST['update']) {
+if (isset($_POST['update'])) {
     $FirstName = $_POST['fname'];
     $LastName = $_POST['lname'];
+
     $Gender = $_POST['gender'];
     $Address = $_POST['address'];
 
@@ -76,8 +77,16 @@ if ($_POST['update']) {
 
     if ($data) {
         echo "Data inserted Successfully";
+        ?>
+
+        <meta http-equiv="refresh" content="1 ;url=http://localhost/EXAM/FORM/display.php">
+
+
+        <?php
+
     }else {
         echo "Not Inserted";
     }
 }
+
 ?>
