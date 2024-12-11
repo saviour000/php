@@ -11,7 +11,7 @@ $total = mysqli_num_rows($data);
 if ($total != 0) {
     ?>
     <h1>Display All Records</h1>
-    <a href="form.php">Add New Data</a>
+    <a href="create.php">Add New Data</a>
 
     <table border="2px">
         <tr>
