@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Search Box using AJAX</title>
+    <style>
+        #searchResults {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 5px;
+        }
+        .search-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .search-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dynamic Search Box Example</h1>
+    <input type="text" id="searchBox" placeholder="Search subjects..." onkeyup="searchSubjects()">
+    <div id="searchResults"></div>
+
+    <script>
+        function searchSubjects() {
+            var query = document.getElementById('searchBox').value;
+
+            // If the search box is empty, clear the results
+            if (query.length == 0) {
+                document.getElementById('searchResults').innerHTML = '';
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'search.php?query=' + query, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var results = JSON.parse(xhr.responseText);
+
+                    // Clear the previous results
+                    var resultDiv = document.getElementById('searchResults');
+                    resultDiv.innerHTML = '';
+
+                    // Display new results
+                    results.forEach(function(item) {
+                        var div = document.createElement('div');
+                        div.classList.add('search-item');
+                        div.textContent = item.subject_code + ' - ' + item.subject_name;
+                        div.onclick = function() {
+                            document.getElementById('searchBox').value = item.subject_name;
+                            resultDiv.innerHTML = ''; // Clear results
+                        };
+                        resultDiv.appendChild(div);
+                    });
+                }
+            };
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>
