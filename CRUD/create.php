@@ -52,8 +52,12 @@ if (isset($_POST['register'])) {
     $Gender = $_POST['gender'];
     $Address = $_POST['address'];
 
+
+    // form is Table name replace it with your table Name
+    
     $query = "INSERT INTO `form` (`fname`,`lname`,`Password`,`Gender`,`Address`) VALUES ('$FirstName','$LastName','$Password',  '$Gender','$Address')";
 
+    
     $data = mysqli_query($conn, $query);
 
     if ($data) {
