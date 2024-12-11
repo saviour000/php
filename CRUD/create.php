@@ -37,7 +37,7 @@
         </div>
     </form>
 
-    <a href="display.php">Display</a>
+    <a href="read.php">Display</a>
 </body>
 </html>
 
